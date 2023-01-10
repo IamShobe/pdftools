@@ -4,10 +4,16 @@ import typer
 from PyPDF2 import PdfReader, PdfWriter
 
 
+def page_number_callback(value: int):
+    if value <= 0:
+        raise typer.BadParameter("Value must be larger than 0")
+    return value
+
+
 def extract_page(
         source_pdf: pathlib.Path,
-        output_pdf: pathlib.Path,
-        page: int,
+        page_number: int = typer.Argument(..., callback=page_number_callback),
+        output_pdf: pathlib.Path = typer.Option('out.pdf', '--output', help="output path for the pdf file"),
         password: str = typer.Option(
             None, '--password', '-p', help="password to unlock the pdf with",
         ),
@@ -15,6 +21,12 @@ def extract_page(
     writer = PdfWriter()
     reader = PdfReader(source_pdf, password=password)
 
-    writer.add_page(reader.pages[page])
+    page_index = page_number - 1
+
+    if page_index > len(reader.pages) - 1:
+        print(f"no such page number! insert a page number between 1 to {len(reader.pages)}")
+        raise typer.Exit(1)
+
+    writer.add_page(reader.pages[page_index])
 
     writer.write(output_pdf)
