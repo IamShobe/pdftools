@@ -3,6 +3,8 @@ import pathlib
 import typer
 from PyPDF2 import PdfReader, PdfWriter
 
+from .common import output_pdf_option
+
 
 def page_number_callback(value: int):
     if value <= 0:
@@ -13,7 +15,7 @@ def page_number_callback(value: int):
 def extract_page(
         source_pdf: pathlib.Path,
         page_number: int = typer.Argument(..., callback=page_number_callback),
-        output_pdf: pathlib.Path = typer.Option('out.pdf', '--output', help="output path for the pdf file"),
+        output_pdf: pathlib.Path = output_pdf_option,
         password: str = typer.Option(
             None, '--password', '-p', help="password to unlock the pdf with",
         ),

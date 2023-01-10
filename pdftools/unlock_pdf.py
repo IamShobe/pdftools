@@ -3,13 +3,15 @@ import pathlib
 import typer
 from PyPDF2 import PdfReader, PdfWriter
 
+from .common import output_pdf_option
+
 
 def unlock(
     source_pdf: pathlib.Path,
     password: str = typer.Option(
         None, '--password', '-p', help="password to unlock the pdf with",
     ),
-    output_pdf: pathlib.Path = typer.Option('out.pdf', '--output', help="output path for the pdf file"),
+    output_pdf: pathlib.Path = output_pdf_option,
 ):
     if password is None:
         password = typer.prompt('Enter password', hide_input=True)
