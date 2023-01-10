@@ -9,6 +9,12 @@ poetry install
 poetry shell
 ```
 
+## Install locally
+```bash
+pipx install .
+```
+this will install scripts package and install all the tools in this repo.
+
 ## Available scripts
 
 ### pdftools
