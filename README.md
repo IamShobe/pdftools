@@ -11,7 +11,7 @@ poetry shell
 
 ## Install locally
 ```bash
-pipx install .
+pipx install git+https://github.com/IamShobe/scripts.git
 ```
 this will install scripts package and install all the tools in this repo.
 
