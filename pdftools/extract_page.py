@@ -17,5 +17,4 @@ def extract_page(
 
     writer.add_page(reader.pages[page])
 
-    with open(output_pdf, 'wb') as fp:
-        writer.write(fp)
+    writer.write(output_pdf)

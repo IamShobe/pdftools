@@ -20,5 +20,4 @@ def unlock(
     for page in reader.pages:
         writer.add_page(page)
 
-    with open(output_pdf, 'wb') as fp:
-        writer.write(fp)
+    writer.write(output_pdf)
