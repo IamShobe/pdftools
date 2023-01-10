@@ -18,6 +18,9 @@ this will install scripts package and install all the tools in this repo.
 ## Available scripts
 
 ### pdftools
+All commands support `-o` flag (output) - if not specified - it will output into `out.pdf` file in 
+current working directory.
+
 - `unlock` - unlocks a pdf using password.
   ```bash
   pdftools unlock <source> -p <password> [-o <dest>]
